@@ -1,0 +1,76 @@
+CREATE DATABASE projectPenjualan;
+
+USE projectPenjualan;
+CREATE TABLE stockBarang(
+id int AUTO_INCREMENT PRIMARY KEY,
+namaBarang VARCHAR(255) NOT NULL,
+jenisBarang VARCHAR(255) NOT NULL,
+jumlahBarang VARCHAR(255) NOT NULL
+);
+
+//keranjang belanja
+CREATE TABLE pesananUser(
+id int AUTO_INCREMENT PRIMARY KEY, 
+alamatUser VARCHAR(255) NOT NULL,
+namaBarang VARCHAR(255) NOT NULL,
+jenisBarang VARCHAR(255) NOT NULL,
+jumlahBarang VARCHAR(255) NOT NULL,
+FOREIGN KEY(id) REFERENCES stockbarang(id)
+);
+
+
+CREATE TABLE kategoriBarang (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    namaKategori VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE stockBarang
+ADD COLUMN kategori_id int,
+ADD FOREIGN KEY (kategori_id) REFERENCES kategoriBarang(id);
+
+CREATE TABLE pelanggan (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    namaPelanggan VARCHAR(255) NOT NULL,
+    alamatPelanggan VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE pesanan (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    pelanggan_id int,
+    FOREIGN KEY (pelanggan_id) REFERENCES pelanggan(id)
+);
+
+ALTER TABLE pesananUser
+ADD COLUMN pesanan_id int,
+ADD FOREIGN KEY (pesanan_id) REFERENCES pesanan(id);
+
+CREATE TABLE pembayaran (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    metodePembayaran VARCHAR(255) NOT NULL,
+    jumlahPembayaran DECIMAL(10,2) NOT NULL,
+    pesanan_id int,
+    FOREIGN KEY (pesanan_id) REFERENCES pesanan(id)
+);
+
+CREATE TABLE pengiriman (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    metodePengiriman VARCHAR(255) NOT NULL,
+    statusPengiriman VARCHAR(255) NOT NULL,
+    tanggalKirim DATE NOT NULL,
+    pesanan_id int,
+    FOREIGN KEY (pesanan_id) REFERENCES pesanan(id)
+);
+
+CREATE TABLE pengguna (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    namaPengguna VARCHAR(255) NOT NULL,
+    kataSandi VARCHAR(255) NOT NULL,
+    pelanggan_id int,
+    FOREIGN KEY (pelanggan_id) REFERENCES pelanggan(id)
+);
+
+
+
+
+
+INSERT into stockbarang(namaBarang, jenisBarang, jumlahBarang) VALUES('malkist khong guan 500 gr','biskuit', '100');
