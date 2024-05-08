@@ -101,7 +101,8 @@ button:active {
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a class="navbar-brand" href="index.html">Home</a></li>
-                            <li><a class="navbar-brand" href="f.html">Faq</a></li>
+                            <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
+							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
                             <li><a class="navbar-brand" href="index.html">Help</a></li>
                             <li><a class="navbar-brand" href="halamanLogin/index.html">Login/Register</a></li>
                         </ul>
