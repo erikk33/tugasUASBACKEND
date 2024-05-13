@@ -337,7 +337,21 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Efek glowing berwarna hitam */
 }
 
+/*dark mode versi baru*/
+#dark-mode-toggle {
+  cursor: pointer;
+}
 
+#icon-img {
+  width: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+  height: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+}
+
+.dark-mode #icon-img {
+  content: url('assets/logo/nighTmode.png'); /* Mengganti dengan URL gambar ikon dark mode */
+}
+
+/*dark mode versi baru endof style*/
 
   </style>
 </head>
@@ -345,7 +359,18 @@
   <h1><span style="font-size: 2em;">Mode Dark/Light</span></h1>
 
   <p>Klik tombol dibawah ini untuk merubah tampilan gelap atau terang</p>
-  <input type="checkbox" onclick="ubahMode()">
+  <div class="popup-container">
+    <div class="popup">
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">
+    <img src="assets/logo/lightMode.png" id="icon-img" alt="Light Mode Icon">
+  </div>
+      <p>Ini adalah konten popup.</p>
+    </div>
+  </div>
+  
+  
+  
+  
   <h1>FAQ - EXPRESS_STORE</h1>
 
   <div class="faq">
@@ -447,10 +472,16 @@
 
   <script>
     //night mode
-    function ubahMode() {
-      const ubah = document.body;
-      ubah.classList.toggle("dark");
-    }
+    function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  const iconImg = document.getElementById('icon-img');
+  if (document.body.classList.contains('dark')) {
+    iconImg.src = 'assets/logo/nighTmode.png';
+  } else {
+    iconImg.src = 'assets/logo/lightMode.png';
+  }
+}
+
     //end of code night mode
     function goToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -461,7 +492,7 @@
 
   // Redirect to index.html
   setTimeout(function () {
-    window.location.href = "index.html"; // Ganti dengan URL yang sesuai
+    window.location.href = "index.php"; // Ganti dengan URL yang sesuai
   }, 500);
 
    // Add 'shooting' class to the back button

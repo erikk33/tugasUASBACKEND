@@ -83,6 +83,63 @@ button:active {
   }
 }
 
+body{
+				margin: 20px;
+				padding: 20px;
+				background-color: #fcfcfc;
+				color: #333333;
+				transition: .5s;
+
+			}
+			input[type="checkbox"]{
+				position: relative;
+				width: 40px;
+				height: 20px;
+				appearance: none;
+				background-color: #434343;
+				outline: none;
+				border-radius: 10px;
+				transition: .5s ease;
+				cursor: pointer;
+			}
+			input[type="checkbox"]:checked{
+				background-color: #3664ff;
+			}
+			input[type="checkbox"]::before{
+				content: '';
+				position: absolute;
+				width: 16 px;
+				height: 16 px;
+				background-color: #fcfcfc;
+				border-radius: 50%;
+				top: 2px;
+				left: 2px;
+				transition: .5s ease;
+			}
+			input[type="checkbox"]:checked::before{
+				transform: translate(20px);
+			}
+			.dark{
+				background-color: #333333;
+				color: #fcfcfc;
+			}
+
+/*dark mode versi baru*/
+#dark-mode-toggle {
+  cursor: pointer;
+}
+
+#icon-img {
+  width: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+  height: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+}
+
+.dark-mode #icon-img {
+  content: url('assets/logo/nighTmode.png'); /* Mengganti dengan URL gambar ikon dark mode */
+}
+
+/*dark mode versi baru endof style*/
+
 	</style>
     <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -96,15 +153,15 @@ button:active {
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="index.html">express_store</a>
+                        <a class="navbar-brand" href="index.php">express_store</a>
                     </div>
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a class="navbar-brand" href="index.html">Home</a></li>
+                            <li><a class="navbar-brand" href="index.php">Home</a></li>
                             <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
-                            <li><a class="navbar-brand" href="index.html">Help</a></li>
-                            <li><a class="navbar-brand" href="halamanLogin/index.html">Login/Register</a></li>
+                            <li><a class="navbar-brand" href="index.php">Help</a></li>
+                            <li><a class="navbar-brand" href="halamanLogin/index.php">Login/Register</a></li>
                         </ul>
                     </div>
                 </div>
@@ -118,6 +175,16 @@ button:active {
             <h2>contact me</h2>
         </div>
         <div class="container">
+        <h1>Mode Dark</h1>
+    <p>Klik tombol dibawah ini untuk merubah tampilan gelap atau terang</p>
+  <div class="popup-container">
+    <div class="popup">
+    <div id="dark-mode-toggle" onclick="toggleDarkMode()">
+    <img src="assets/logo/lightMode.png" id="icon-img" alt="Light Mode Icon">
+  </div>
+      <p>Ini adalah konten popup.</p>
+    </div>
+  </div>
             <div class="contact-content">
                 <div class="row">
                     <div class="col-md-offset-1 col-md-5 col-sm-6">
@@ -238,6 +305,24 @@ button:active {
     <script src="assets/js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="assets/js/custom.js"></script>
+
+
+	
+        <script>
+    //night mode
+  function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  const iconImg = document.getElementById('icon-img');
+  if (document.body.classList.contains('dark')) {
+    iconImg.src = 'assets/logo/nighTmode.png';
+  } else {
+    iconImg.src = 'assets/logo/lightMode.png';
+  }
+}
+
+ 
+    //end of code night mode
+	</script>
 </body>
 
 </html>

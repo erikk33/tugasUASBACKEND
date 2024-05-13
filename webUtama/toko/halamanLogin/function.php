@@ -2,7 +2,7 @@
 $server = "localhost";
 $username = "root";
 $password = "";
-$database = "justinzthrift";
+$database = "projectpenjualan";
 
 $conn = mysqli_connect($server,$username,$password,$database);
 if (mysqli_connect_error()) {
@@ -17,10 +17,12 @@ function registrasi($data){
     $username = strtolower(stripslashes($data["username"]));
     $password = mysqli_real_escape_string($conn,$data["password"]);
     $password2 = mysqli_real_escape_string($conn,$data["password2"]);
+    // $Role = $data["role"];
+
     
     //check username sudah ada atau belum duplikat
-    $result = mysqli_query($conn,"SELECT username FROM user 
-    WHERE username = '$username'");
+    $result = mysqli_query($conn,"SELECT namaPengguna FROM pengguna 
+    WHERE namaPengguna = '$username'");
     if(mysqli_fetch_assoc($result)){
         echo "<script>
         alert('username sudah terdaftar!')
@@ -41,7 +43,8 @@ function registrasi($data){
   
 
     //tambahkan user baru ke db 
-    mysqli_query($conn, "INSERT INTO user VALUES('','$username','$password')");
+    mysqli_query($conn, "INSERT INTO pengguna (namaPengguna, kataSandi) VALUES ('$username', '$password')");
+
     
     return mysqli_affected_rows($conn);
 }

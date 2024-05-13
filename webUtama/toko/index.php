@@ -1,3 +1,13 @@
+<?php 
+session_start();
+// Jika tidak ada sesi login, arahkan ke halaman login
+if (!isset($_SESSION["login"])){
+  header("Location: ./halamanLogin/registrasiLogin.php");
+  exit;
+}
+
+
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -49,13 +59,78 @@
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]--> 
+		<style>
+			body{
+				margin: 20px;
+				padding: 20px;
+				background-color: #fcfcfc;
+				color: #333333;
+				transition: .5s;
+
+			}
+			input[type="checkbox"]{
+				position: relative;
+				width: 40px;
+				height: 20px;
+				appearance: none;
+				background-color: #434343;
+				outline: none;
+				border-radius: 10px;
+				transition: .5s ease;
+				cursor: pointer;
+			}
+			input[type="checkbox"]:checked{
+				background-color: #3664ff;
+			}
+			input[type="checkbox"]::before{
+				content: '';
+				position: absolute;
+				width: 16 px;
+				height: 16 px;
+				background-color: #fcfcfc;
+				border-radius: 50%;
+				top: 2px;
+				left: 2px;
+				transition: .5s ease;
+			}
+			input[type="checkbox"]:checked::before{
+				transform: translate(20px);
+			}
+			.dark{
+				background-color: #333333;
+				color: #fcfcfc;
+			}
+
+			
+/*dark mode versi baru*/
+#dark-mode-toggle {
+  cursor: pointer;
+}
+
+#icon-img {
+  width: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+  height: 40px; /* Sesuaikan dengan ukuran ikon Anda */
+}
+
+.dark-mode #icon-img {
+  content: url('assets/logo/nighTmode.png'); /* Mengganti dengan URL gambar ikon dark mode */
+}
+
+/*dark mode versi baru endof style*/
+		</style>
     </head>
 	
 	<body >
-		
-		<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
+		<h1>Mode Dark</h1>
+		<p>Klik tombol dibawah ini untuk merubah tampilan gelap atau terang</p>
+		<div class="popup-container">
+		  <div class="popup">
+		  <div id="dark-mode-toggle" onclick="toggleDarkMode()">
+		  <img src="assets/logo/lightMode.png" id="icon-img" alt="Light Mode Icon">
+		</div>
+			<!-- <p>Ini adalah konten popup.</p> -->
+		  </div>
+		</div>
 		
 		<!-- top-area Start -->
 		<header class="top-area">
@@ -70,7 +145,7 @@
 			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 			                    <i class="fa fa-bars"></i>
 			                </button>
-			                <a class="navbar-brand" href="index.html">express_store</a>
+			                <a class="navbar-brand" href="index.php">express_store</a>
 			            </div><!--/.navbar-header-->
 			            <!-- End Header Navigation -->
 
@@ -78,11 +153,12 @@
 			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 			                <ul class="nav navbar-nav navbar-right" >
 			                <li class=" smooth-menu active"></li>
-							<li><a class="navbar-brand" href="index.html">Home</a></li>
+							<li><a class="navbar-brand" href="index.php">Home</a></li>
 			                <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
-							<li><a class="navbar-brand" href="index.html">Help</a></li>
-						    <li><a class="navbar-brand" href="halamanLogin/index.html">Login/Register</a></li>
+							<li><a class="navbar-brand" href="index.php">Help</a></li>
+						    <li><a class="navbar-brand" href="halamanLogin/index.php">Login/Register</a></li>
+							<li><a class="navbar-brand" href="halamanLogout/logout.php">Logout</a></li>
 			                    <!-- <li class="smooth-menu"><a href="">profile</a></li> -->
 			                    <!-- <li class="smooth-menu"><a href="#portfolio">portfolio</a></li>
 			                    <li class="smooth-menu"><a href="#clients">clients</a></li>
@@ -130,7 +206,13 @@
 								kami menjual berbagai barang dengan harga yang murah dan terjangkau
 								</h3>
 								<p>
-									Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspi unde omnis iste natus error sit voluptatem accusantium doloremque lauda ntium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam vo luptatem quia voluptas sit aspernatur aut odit aut fugit,
+									"Selamat datang di toko kami! Kami menawarkan berbagai macam barang dengan harga yang terjangkau dan ramah di kantong Anda. Kami memahami bahwa kualitas dan harga yang bersahabat adalah hal yang penting bagi pelanggan kami.
+
+Dalam koleksi kami, Anda akan menemukan beragam barang berkualitas tinggi yang memenuhi kebutuhan sehari-hari Anda, mulai dari pakaian, perlengkapan elektronik, peralatan rumah tangga, hingga aksesori fashion. Kami berkomitmen untuk menyediakan produk-produk berkualitas tanpa harus menguras dompet Anda.
+
+Setiap pembelian di toko kami adalah jaminan kepuasan, karena kami selalu berusaha memberikan layanan terbaik kepada pelanggan kami. Jadi, jangan ragu lagi untuk berbelanja di toko kami dan temukan berbagai penawaran menarik yang bisa Anda dapatkan.
+
+Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 								</p>
 								<div class="row">
 									<div class="col-sm-4">
@@ -142,13 +224,13 @@
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>email</h3>
-											<p>browny@info.com</p>
+											<p>express@.com</p>
 										</div>
 									</div>
 									<div class="col-sm-4">
 										<div class="single-about-add-info">
 											<h3>website</h3>
-											<p>www.brownsine.com</p>
+											<p>express.com</p>
 										</div>
 									</div>
 								</div>
@@ -199,11 +281,230 @@
 			</div>
 		</section><!--/.about-->
 		<!--about end -->
-		
+		<section class="shop_section layout_padding">
+			<div class="container">
+			  <div class="heading_container heading_center">
+				<h2>
+				Produk Terbaru
+				</h2>
+			  </div>
+			  <div class="row">
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/beras2Putri.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						Beras 2 Putri 25KG
+						</h6>
+						<h6>
+						   Harga
+						  <span>
+							190 K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/gulaRosebrandgulatebu-removebg-preview.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Gula tebu
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							20K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/gulaku-premium-1-kg-14000-removebg-preview.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Gulaku
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							30 K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/coklatSilverqueen-removebg-preview.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Coklat Silverqueen
+						</h6>
+						<h6>
+						  Harga
+						   <span>
+						   50 K
+						  </span>
+						  <span>
+						  
+						  </span>
+						
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/indomie.jpg" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  indomie
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							5K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/frestea-removebg-preview.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Frestea
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							5K 
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/tehbotol350ml-removebg-preview.png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Teh Botol
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							5 K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+				  <div class="box">
+					<a href="">
+					  <div class="img-box">
+						<img src="assets/images/tepungteriguSegitigabiru-removebg-preview (1).png" alt="">
+					  </div>
+					  <div class="detail-box">
+						<h6>
+						  Tepung Terigu
+						</h6>
+						<h6>
+						  Harga
+						  <span>
+							50K
+						  </span>
+						</h6>
+					  </div>
+					  <div class="new">
+						<span>
+						  New
+						</span>
+					  </div>
+					</a>
+				  </div>
+				</div>
+			  </div>
+			  <div class="btn-box">
+				<a href="./shop/index.php">
+				  View All Products
+				</a>
+			  </div>
+			</div>
+		  </section>
 		<!--education start -->
 		<section id="education" class="education">
 			<div class="section-heading text-center">
-				<h2>education</h2>
+				<h2>customer satisfaction</h2>
 			</div>
 			<div class="container">
 				<div class="education-horizontal-timeline">
@@ -211,7 +512,7 @@
 						<div class="col-sm-4">
 							<div class="single-horizontal-timeline">
 								<div class="experience-time">
-									<h2>2008 - 2010</h2>
+									<h2>Jiraya</h2>
 									<h3>master <span>of </span> computer science</h3>
 								</div><!--/.experience-time-->
 								<div class="timeline-horizontal-border">
@@ -225,8 +526,7 @@
 										</h4>
 										<h5>north carolina, USA</h5>
 										<p class="description">
-											Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
-										</p>
+											
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
 							</div>
@@ -234,7 +534,7 @@
 						<div class="col-sm-4">
 							<div class="single-horizontal-timeline">
 								<div class="experience-time">
-									<h2>2004 - 2008</h2>
+									<h2>Jiraya</h2>
 									<h3>bachelor <span>of </span> computer science</h3>
 								</div><!--/.experience-time-->
 								<div class="timeline-horizontal-border">
@@ -248,7 +548,7 @@
 										</h4>
 										<h5>north carolina, USA</h5>
 										<p class="description">
-											Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
+											Jangan ragu untuk berbelanja di toko ini karena kualitas barang sangat baik.
 										</p>
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
@@ -257,7 +557,7 @@
 						<div class="col-sm-4">
 							<div class="single-horizontal-timeline">
 								<div class="experience-time">
-									<h2>2004 - 2008</h2>
+									<h2>Jiraya</h2>
 									<h3>bachelor <span>of </span> creative design</h3>
 								</div><!--/.experience-time-->
 								<div class="timeline-horizontal-border">
@@ -272,7 +572,7 @@
 										</h4>
 										<h5>bolton, united kingdome</h5>
 										<p class="description">
-											Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. 
+											Kualitas barangnya sampai saat ini tetap konsisten dengan mempertahankan kualitasnya
 										</p>
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
@@ -289,14 +589,14 @@
 		<section id="skills" class="skills">
 				<div class="skill-content">
 					<div class="section-heading text-center">
-						<h2>skills</h2>
+						<h2>Barang terlaris</h2>
 					</div>
 					<div class="container">
 						<div class="row">
 							<div class="col-md-6">
 								<div class="single-skill-content">
 									<div class="barWrapper">
-										<span class="progressText">adobe photoshop</span>
+										<span class="progressText">Daging Sapi</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100" style="">
@@ -307,7 +607,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">adobe illustrator</span>
+										<span class="progressText">Beras</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="10" aria-valuemax="100" style="">
@@ -318,7 +618,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">adobe after effects</span>
+										<span class="progressText">Koko Krunch</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="10" aria-valuemax="100" style="">
@@ -329,7 +629,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">sketch</span>
+										<span class="progressText">Frozen Food</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100" style="">
@@ -344,7 +644,7 @@
 							<div class="col-md-6">
 								<div class="single-skill-content">
 									<div class="barWrapper">
-										<span class="progressText">html 5</span>
+										<span class="progressText">Tepung segitiga Biru</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 												<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100" style="">
@@ -355,7 +655,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">css 3 animation</span>
+										<span class="progressText">Indomie</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="10" aria-valuemax="100" style="">
@@ -366,7 +666,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">communication</span>
+										<span class="progressText">Tepung Terigu</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="10" aria-valuemax="100" style="">
@@ -377,7 +677,7 @@
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText"> creativity</span>
+										<span class="progressText">Tepung Tapioka</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="10" aria-valuemax="100" style="">
@@ -967,6 +1267,22 @@
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
         
+  <script>
+    //night mode
+  //night mode
+  function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  const iconImg = document.getElementById('icon-img');
+  if (document.body.classList.contains('dark')) {
+    iconImg.src = 'assets/logo/nighTmode.png';
+  } else {
+    iconImg.src = 'assets/logo/lightMode.png';
+  }
+}
+
+    //end of code night mode
+    //end of code night mode
+	</script>
     </body>
 	
 </html>

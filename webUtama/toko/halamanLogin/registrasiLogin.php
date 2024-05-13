@@ -15,28 +15,60 @@ if (isset($_POST["register"]))
 }
 
 ?>
+
 <?php
-require 'functionlogin.php';
-//config login
+session_start();
+
+//cek cookie 
+// if (isset($_COOKIE['login'])){
+//   if($_COOKIE['login'] == 'true'){
+//     $_SESSION['login'] = true;
+//   }
+// }
+// require 'functionlogin.php';
+
+// if (isset($_SESSION["login"])) {
+//   header("Location: ../index.php");
+//   exit;
+// }
+
+
 if(isset($_POST["login"])){
   $username = $_POST["username"];
   $password = $_POST["password"];
+  // $role = $_POST["role"];
 
-  $hasil = mysqli_query($conn,"SELECT * FROM user WHERE username = 
-  '$username'");
+  // Query untuk memeriksa apakah username dan role cocok
+  $query = "SELECT * FROM pengguna WHERE namaPengguna = '$username'";
+  $result = mysqli_query($conn, $query);
+  if (mysqli_num_rows($result) == 1) {
+    $row = mysqli_fetch_assoc($result);
+    if (password_verify($password, $row["kataSandi"])) {
+        $_SESSION["login"] = true;
+        // $_SESSION["role"] = true;
+      
+      //cek remember me
+if(isset($_POST['remember'])){
+  //buat cookie
+  setcookie('login','true', time()+120);
+  
+}
+header("Location: ../index.php");
+        // $_SESSION["role"] = $row["role"]; // Menyimpan peran pengguna dalam sesi
+        // // Redirect based on role
+        // if ($role === "user") {
+        //     header("Location: ../index.php");
+        // } elseif ($role === "admin") {
+        //     header("Location: ../tampilkandatauser.php");
+        // }
+        exit;
+    }
+}
 
-  if (mysqli_num_rows($hasil) == 1) {
-    //check password 
-    $row = mysqli_fetch_assoc($hasil);
-   if (password_verify($password,$row["password"])){
-    header("Location:../index.php");
-    exit;
-   }
-  }
   $error = true;
-
 }
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -88,10 +120,15 @@ if(isset($_POST["login"])){
           
           <input type="password" name="password" placeholder="Password" required />
           <input type="password" name="password2" placeholder="Konfirmasi Password" required />
-          <!-- <div class="checkbox">
-            <input type="checkbox" id="signupCheck" />
-            <label for="signupCheck">I accept all terms & conditions</label>
-          </div> -->
+          <!-- <div class="dropdown">
+    <select name="role" id="roleSelect">
+         <option value=""></option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+</div> -->
+
+        
           <input type="submit" value="Signup" name="register" />
           <button class="btn btn-light" onclick="window.location.href='../index.php'" type="button">Home</button>
         </form>
@@ -106,6 +143,18 @@ if(isset($_POST["login"])){
         <form action="" method="post">
           <input type="text" name="username" placeholder="username" required />
           <input type="password" name="password" placeholder="Password" required />
+          <!-- <div class="dropdown">
+    <select name="role" id="roleSelect">
+         <option value=""></option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+    </select>
+</div> -->
+<div class="checkbox">
+  <input type="checkbox" name="remember" id="remember" />
+  <label for="remember" style="color: black;">remember me</label>
+</div>
+
           <!-- <a href="#">Forgot password?</a> -->
           <input type="submit" name="login" value="Login" />
           <button class="btn btn-light" onclick="window.location.href='../index.php'" type="button">Home</button>
