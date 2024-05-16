@@ -203,13 +203,7 @@ body{
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="subject" placeholder="subject" name="subject">
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
