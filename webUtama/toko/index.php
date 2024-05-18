@@ -1030,6 +1030,55 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 											</a>
 										</div><!-- /.isotope-overlay -->
 									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Chimory.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Chimory yoghurt 
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Daging beku.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Daging Beku
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									
+									<div class="item">
+										<img src="assets/images/Daging.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Daging 
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Snack.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Snack
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/softDrink.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Soft Drink
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+
+
 								</div><!-- /.col -->
 
 								<div class="col-sm-4">
@@ -1041,7 +1090,17 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 											</a>
 										</div><!-- /.isotope-overlay -->
 									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/waferNabati.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Wafer Nabati
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
 								</div><!-- /.col -->
+							
 
 								<div class="col-sm-4">
 									<div class="item">
@@ -1057,6 +1116,70 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 										<div class="isotope-overlay">
 											<a href="#">
 												Gula
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Fruitea-removebg-preview.png" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												fruit Tea
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/BuahBuahan.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Buah buahan
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/c6a4ab0d-0879-4c4b-a15a-87a27a562b6c.jpeg.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+												Chitato
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Dairy_Milk_Chocolate___M_Awais_Butt.jpeg-removebg-preview.png" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+													Dairy milk Chocolate
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									
+									<div class="item">
+										<img src="assets/images/Eskrim.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+													Es Krim 
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Olatte drink Pin pink ver.jpeg.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+													Olatte Drink
+											</a>
+										</div><!-- /.isotope-overlay -->
+									</div><!-- /.item -->
+
+									<div class="item">
+										<img src="assets/images/Rotinya kakak.jpeg.jpg" alt="portfolio image"/>
+										<div class="isotope-overlay">
+											<a href="#">
+													Sari Roti Coklat
 											</a>
 										</div><!-- /.isotope-overlay -->
 									</div><!-- /.item -->
@@ -1080,7 +1203,7 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 					<div class="owl-carousel owl-theme" id="client">
 						<div class="item">
 							<a href="#">
-								<img src="assets/images/clients/c1.png" alt="brand-image" />
+								<img src="assets/images/clients/wallsCompany (1).png" alt="brand-image" />
 							</a>
 						</div><!--/.item-->
 						<div class="item">
