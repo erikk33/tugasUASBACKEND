@@ -33,4 +33,35 @@ function hapus ($id) {
 
     return mysqli_affected_rows($conn);
 }
+
+
+function ubah ($data) {
+    global $conn;
+    $id = $data["id"];
+    $namabarang = htmlspecialchars($data["namaBarang"]);
+    $jenisBarang = htmlspecialchars ($data["jenisBarang"]);
+    $jumlahBarang = htmlspecialchars($data["jumlahBarang"]);
+
+    $query = "UPDATE stockbarang SET 
+    namaBarang = '$namabarang',
+    jenisBarang =   '$jenisBarang',
+    jumlahBarang = '$jumlahBarang'
+    WHERE id = $id;
+    ";
+
+    mysqli_query($conn,$query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function cari($keyword) {
+    $query = "SELECT * FROM stockbarang
+    WHERE 
+    namaBarang LIKE '%$keyword%' OR
+    jenisBarang LIKE '%$keyword%' OR
+    jumlahBarang LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
 ?>

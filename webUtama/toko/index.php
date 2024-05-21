@@ -157,7 +157,7 @@ if (!isset($_SESSION["login"])){
 			                <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
 							<li><a class="navbar-brand" href="index.php">Help</a></li>
-						    <li><a class="navbar-brand" href="halamanLogin/index.php">Login/Register</a></li>
+						    <li><a class="navbar-brand" href="halamanLogin/index.html">Login/Register</a></li>
 							<li><a class="navbar-brand" href="halamanLogout/logout.php">Logout</a></li>
 			                    <!-- <li class="smooth-menu"><a href="">profile</a></li> -->
 			                    <!-- <li class="smooth-menu"><a href="#portfolio">portfolio</a></li>
