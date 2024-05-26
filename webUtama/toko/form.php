@@ -199,7 +199,7 @@ body{
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="email" name="email">
+                                                <input required type="email" class="form-control" id="email" placeholder="email" name="email" >
                                             </div>
                                         </div>
                                     </div>
@@ -207,14 +207,14 @@ body{
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="phone" placeholder="phone" name="phone">
+                                                <input required type="text" class="form-control" id="phone" placeholder="phone" name="phone">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="8" id="pesan" placeholder="pesan" name="pesan"></textarea>
+                                                <textarea required class="form-control" rows="8" id="pesan" placeholder="pesan" name="pesan"></textarea>
                                             </div>
                                         </div>
                                     </div>
