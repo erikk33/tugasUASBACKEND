@@ -1,3 +1,28 @@
+<?php 
+session_start();
+// Jika tidak ada sesi login, arahkan ke halaman login
+// if (!isset($_SESSION["login"])){
+//   header("Location: ./halamanLogin/registrasiLogin.php");
+//   exit;
+
+  
+// }
+
+// Check if the user is logged in and has a role
+if (isset($_SESSION['login']) && isset($_SESSION['role'])) {
+    // If the role is 'user', redirect to admin.php
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin.php");
+        exit;
+    }
+} else {
+    // If the user is not logged in, redirect to the login page
+    header("Location: ./halamanLogin/registrasiLogin.php");
+    exit;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,19 +38,19 @@
         <h2>Produk Baru</h2>
  
         <div class="list-produk">
-            <img src="gambar/jaket-parasut.jpg" alt="Jaket Parasut">
+            <img src="assets/images/BuahBuahan.jpg" alt="Buah Buahan">
  
-            <h4>Jaket Parasut Polos</h4>
-            <h5>Rp 150.000,-</h5>
+            <h4>Buah Buahan</h4>
+            <h5>Rp 50.000,-</h5>
  
             <a class="tombol tombol-detail" href="#">Detail</a> 
             <a class="tombol tombol-beli" href="#">Beli</a>
         </div>
  
         <div class="list-produk">
-            <img src="assets/images/beras.jpg" alt="Jaket Tactical">
+            <img src="assets/images/beras.jpg" alt="Beras">
  
-            <h4>Jaket Tactical Hitam</h4>
+            <h4>Beras</h4>
             <h5>Rp 230.000,-</h5>
  
             <a class="tombol tombol-detail" href="#">Detail</a> 
@@ -33,19 +58,19 @@
         </div>
  
         <div class="list-produk">
-            <img src="gambar/bomber-stylish.jpg" alt="Jaket Bomber Stylish">
+            <img src="assets/images/Chimory.jpg" alt="Yoghurt Chimory">
  
-            <h4>Jaket Bomber Stylish</h4>
-            <h5>Rp 250.000,-</h5>
+            <h4>Yoghurt Chimory</h4>
+            <h5>Rp 150.000,-</h5>
  
             <a class="tombol tombol-detail" href="#">Detail</a> 
             <a class="tombol tombol-beli" href="#">Beli</a>
         </div>
  
         <div class="list-produk">
-            <img src="gambar/jaket-naruto.jpg" alt="Jaket Naruto">
+            <img src="assets/images/Daging beku.jpg" alt="Daging Beku">
  
-            <h4>Jaket Naruto</h4>
+            <h4>Daging Beku</h4>
             <h5>Rp 170.000,-</h5>
  
             <a class="tombol tombol-detail" href="#">Detail</a> 

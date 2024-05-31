@@ -1,9 +1,27 @@
 <?php 
 session_start();
 // Jika tidak ada sesi login, arahkan ke halaman login
-if (!isset($_SESSION["login"])){
-  header("Location: ./halamanLogin/registrasiLogin.php");
-  exit;
+// if (!isset($_SESSION["login"])){
+//   header("Location: ./halamanLogin/registrasiLogin.php");
+//   exit;
+
+  
+// }
+
+// Check if the user is logged in and has a role
+if (isset($_SESSION['login']) && isset($_SESSION['role'])) {
+    // If the role is 'user', redirect to admin.php
+
+	
+	if ($_SESSION['role'] === 'admin') {
+        header("Location: admin.php");
+        exit;
+    }
+	
+} else {
+    // If the user is not logged in, redirect to the login page
+    header("Location: ./halamanLogin/registrasiLogin.php");
+    exit;
 }
 
 
@@ -154,7 +172,7 @@ if (!isset($_SESSION["login"])){
 			                <ul class="nav navbar-nav navbar-right" >
 			                <li class=" smooth-menu active"></li>
 							<li><a class="navbar-brand" href="index.php">Home</a></li>
-			                <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
+			                <li><a class="navbar-brand" href="FAQ.php">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
 							<li><a class="navbar-brand" href="index.php">Help</a></li>
 						    <li><a class="navbar-brand" href="halamanLogin/registrasiLogin.php">Login/Register</a></li>
@@ -495,7 +513,7 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 				</div>
 			  </div>
 			  <div class="btn-box">
-				<a href="./shop/index.php">
+				<a href="listProduk.html">
 				  View All Products
 				</a>
 			  </div>

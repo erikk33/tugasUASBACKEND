@@ -1,3 +1,28 @@
+<?php 
+session_start();
+// Jika tidak ada sesi login, arahkan ke halaman login
+// if (!isset($_SESSION["login"])){
+//   header("Location: ./halamanLogin/registrasiLogin.php");
+//   exit;
+
+  
+// }
+
+// Check if the user is logged in and has a role
+if (isset($_SESSION['login']) && isset($_SESSION['role'])) {
+    // If the role is 'user', redirect to admin.php
+    if ($_SESSION['role'] === 'admin') {
+        header("Location: admin.php");
+        exit;
+    }
+} else {
+    // If the user is not logged in, redirect to the login page
+    header("Location: ./halamanLogin/registrasiLogin.php");
+    exit;
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

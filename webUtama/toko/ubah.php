@@ -35,22 +35,29 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ubah</title>
     <link rel="stylesheet" href="styletambahbarang.css">
 </head>
 <body>
     <h1 style="text-align: center;">Ubah data Stock Barang</h1>
     <br>
     <br>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?= $brng["id"]?>">
+        <input type="hidden" name="gambarLama" value="<?= $brng["gambar"]?>">
     <ul>
         <li>
             <label for="namaBarang">Nama Barang</label>
             <input type="text" name="namaBarang" id="namaBarang" required 
             value="<?= $brng["namaBarang"];?>">
         </li>
-
+        <li>
+            <label for="gambar">gambar</label> <br>
+           <img src="assets/images/<?=$brng['gambar'];?>" width="500"><br>
+            <input type="file" name="gambar" id="gambar" 
+           
+            >
+        </li>
         <li>
         <label for="jenisBarang">Jenis Barang</label>
             <input type="text" name="jenisBarang" id="jenisBarang"

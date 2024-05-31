@@ -4,6 +4,10 @@ require 'function.php';
 $conn = mysqli_connect("localhost","root","","projectpenjualan");
 //cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
+
+    // var_dump($_POST); 
+    // var_dump($_FILES);
+    // die;
     //check apakah data berhasil di tambahakan atau tidak 
    if (tambah($_POST) > 0) {
     echo "
@@ -29,18 +33,22 @@ if (isset($_POST["submit"])) {
     <title>Document</title>
     <link rel="stylesheet" href="styletambahbarang.css">
     <link rel="stylesheet" href="buttonTambah.css">
+    
 </head>
 <body>
     <h1 style="text-align: center;">Tambah data Stock Barang</h1>
     <br>
     <br>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
     <ul>
         <li>
             <label for="namaBarang">Nama Barang</label>
             <input type="text" name="namaBarang" id="namaBarang" required>
         </li>
-
+        <li>
+            <label for="gambar">gambar</label>
+            <input type="file" name="gambar" id="gambar" required>
+        </li>
         <li>
         <label for="jenisBarang">Jenis Barang</label>
             <input type="text" name="jenisBarang" id="jenisBarang">
