@@ -58,6 +58,11 @@ if (isset($_POST["submit"])) {
         <label for="jumlahBarang">Jumlah Barang</label>
             <input type="text" name="jumlahBarang" id="jumlahBarang">
         </li>
+
+        <li>
+        <label for="harga">harga</label>
+            <input type="text" name="harga" id="harga">
+        </li>
         <li>
            <button class="btn-17" type="submit" name="submit">
   <span class="text-container">

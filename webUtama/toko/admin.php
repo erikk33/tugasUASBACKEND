@@ -69,6 +69,7 @@ if (isset($_POST["cari"])) {
       <th scope="col">Gambar </th>
       <th scope="col">Jenis Barang</th>
       <th scope="col">Jumlah Barang</th>
+      <th scope="col">Harga Barang per PCS</th>
       <!-- <th scope="col">Kategori Id</th> -->
       <th scope="col">Aksi</th>
     </tr>
@@ -84,7 +85,8 @@ if (isset($_POST["cari"])) {
     </td>
       <td><?= $row["jenisBarang"]; ?></td>
       <td><?= $row["jumlahBarang"]; ?></td>
-      
+      <td>Rp <?= number_format($row["harga"], 0, ',', '.'); ?></td>
+
       <td>
     <a href="ubah.php?id=<?=$row["id"]?>">ubah</a>
     <a href="hapus.php?id=<?= $row["id"];?>" onclick="

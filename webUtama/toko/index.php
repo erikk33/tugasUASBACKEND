@@ -300,224 +300,51 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
 		</section><!--/.about-->
 		<!--about end -->
 		<section class="shop_section layout_padding">
-			<div class="container">
-			  <div class="heading_container heading_center">
-				<h2>
-				Produk Terbaru
-				</h2>
-			  </div>
-			  <div class="row">
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/beras2Putri.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						Beras 2 Putri 25KG
-						</h6>
-						<h6>
-						   Harga
-						  <span>
-							190 K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/gulaRosebrandgulatebu-removebg-preview.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Gula tebu
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							20K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/gulaku-premium-1-kg-14000-removebg-preview.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Gulaku
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							30 K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/coklatSilverqueen-removebg-preview.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Coklat Silverqueen
-						</h6>
-						<h6>
-						  Harga
-						   <span>
-						   50 K
-						  </span>
-						  <span>
-						  
-						  </span>
-						
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/indomie.jpg" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  indomie
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							5K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/frestea-removebg-preview.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Frestea
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							5K 
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/tehbotol350ml-removebg-preview.png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Teh Botol
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							5 K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-				<div class="col-sm-6 col-md-4 col-lg-3">
-				  <div class="box">
-					<a href="">
-					  <div class="img-box">
-						<img src="assets/images/tepungteriguSegitigabiru-removebg-preview (1).png" alt="">
-					  </div>
-					  <div class="detail-box">
-						<h6>
-						  Tepung Terigu
-						</h6>
-						<h6>
-						  Harga
-						  <span>
-							50K
-						  </span>
-						</h6>
-					  </div>
-					  <div class="new">
-						<span>
-						  New
-						</span>
-					  </div>
-					</a>
-				  </div>
-				</div>
-			  </div>
-			  <div class="btn-box">
-				<a href="listProduk.html">
-				  View All Products
-				</a>
-			  </div>
-			</div>
+		<div class="container">
+    <div class="heading_container heading_center">
+        <h2>
+            Produk Terbaru
+        </h2>
+    </div>
+    <div class="row">
+        <?php
+        include 'db_connectlistproduk.php'; // Menghubungkan ke database
+
+        $sql = "SELECT namaBarang, gambar, harga FROM stockbarang"; // Query untuk mengambil data produk
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+        ?>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="box">
+                        <a href="">
+                            <div class="img-box">
+                                <img src="assets/images/<?php echo $row['gambar']; ?>" alt="<?php echo $row['namaBarang']; ?>">
+                            </div>
+                            <div class="detail-box">
+                                <h6><?php echo $row['namaBarang']; ?></h6>
+                                <h6>Harga <span><?php echo 'Rp ' . number_format($row['harga'], 0, ',', '.'); ?> K</span></h6>
+                            </div>
+                            <div class="new">
+                                <span>New</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+        <?php
+            }
+        } else {
+            echo "Tidak ada produk tersedia.";
+        }
+        $conn->close(); // Menutup koneksi
+        ?>
+    </div>
+    <div class="btn-box">
+        <a href="listProduk.html">View All Products</a>
+    </div>
+</div>
+
 		  </section>
 		<!--education start -->
 		<section id="education" class="education">

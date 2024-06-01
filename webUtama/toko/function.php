@@ -19,13 +19,14 @@ function tambah($data) {
      $namabarang = htmlspecialchars($data["namaBarang"]);
      $jenisBarang = htmlspecialchars ($data["jenisBarang"]);
      $jumlahBarang = htmlspecialchars($data["jumlahBarang"]);
+     $harga = htmlspecialchars($data["harga"]);
      // Uploud gambar
      $gambar = upload();
      if (!$gambar) {
         return false;
      }
  
-     $query = "INSERT INTO stockbarang (namaBarang, jenisBarang, jumlahBarang, gambar) VALUES ('$namabarang', '$jenisBarang', '$jumlahBarang', '$gambar')";
+     $query = "INSERT INTO stockbarang (namaBarang, jenisBarang, jumlahBarang, harga, gambar) VALUES ('$namabarang', '$jenisBarang', '$jumlahBarang', '$harga','$gambar')";
 
      mysqli_query($conn,$query);
 
@@ -89,6 +90,7 @@ function ubah ($data) {
     $gambarLama = htmlspecialchars($data["gambarLama"]);
     $jenisBarang = htmlspecialchars($data["jenisBarang"]);
     $jumlahBarang = htmlspecialchars($data["jumlahBarang"]);
+    $harga = htmlspecialchars($data["harga"]);
 
     //cek apakah user pilih gambar baru atau tidak
     if ($_FILES['gambar']['error'] === 4) {
@@ -102,7 +104,8 @@ function ubah ($data) {
     namaBarang = '$namabarang',
     gambar = '$gambar',
     jenisBarang =   '$jenisBarang',
-    jumlahBarang = '$jumlahBarang'
+    jumlahBarang = '$jumlahBarang',
+    harga = '$harga'
     WHERE id = $id;
     ";
 

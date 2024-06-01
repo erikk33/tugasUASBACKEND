@@ -70,6 +70,11 @@ if (isset($_POST["submit"])) {
               value="<?= $brng["jumlahBarang"];?>">
         </li>
         <li>
+        <label for="harga">harga Barang</label>
+            <input type="text" name="harga" id="harga"
+              value="<?= $brng["harga"];?>">
+        </li>
+        <li>
             <button type="submit" name="submit">Ubah Data !</button>
         </li>
     </ul>

@@ -1,88 +1,62 @@
-*
-{
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f8f8;
 }
- 
-body
-{
-    background-color: black;
-}
- 
-.badan
-{
-    width: 880px;
-    margin: 35px auto;
-    background-color: white;
+
+.badan {
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
-    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
- 
-.badan h2
-{
-    color: crimson;
-    border-bottom: 1px solid gainsboro;
-    margin: 5px;
-    margin-bottom: 13px;
-}
- 
-.list-produk
-{
-    border: 1px solid gainsboro;
-    padding: 10px;
-    float: left;
-    width: 200px;
-    margin: 5px;
-}
- 
-.list-produk:hover
-{
-    transition-duration: 700ms;
-    box-shadow: 5px 5px gainsboro;
-}
- 
-.list-produk img
-{
-    width: 100%;
-    height: 175px;
-    display: block;
-    margin-bottom: 5px;
-}
- 
-.list-produk h4, .list-produk h5
-{
-    color: crimson;
+
+.badan h2 {
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
- 
-.tombol
-{
+
+.list-produk {
+    display: inline-block;
+    width: 23%;
+    margin: 1%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.list-produk img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.list-produk h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.list-produk h5 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    color: #ff6f61;
+}
+
+.tombol {
+    display: inline-block;
+    padding: 10px 15px;
     text-decoration: none;
-    border-radius: 7px;
-    padding: 7px;
-    display: block;
-    float: left;
-    width: 45%;
-    margin: 4px;
-    text-align: center;
-    color: white;
+    color: #fff;
+    background-color: #ff6f61;
+    border-radius: 5px;
+    margin: 5px 0;
 }
- 
-.tombol:hover
-{
-    background-color: black;
-    transition-duration: 700ms;
-}
- 
-.tombol-detail
-{
-    background-color: green;
-}
- 
-.tombol-beli
-{
-    background-color: crimson;
+
+.tombol:hover {
+    background-color: #ff3b2e;
 }
