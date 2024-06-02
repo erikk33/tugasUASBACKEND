@@ -341,7 +341,7 @@ Terima kasih atas kunjungan Anda dan selamat berbelanja!"
         ?>
     </div>
     <div class="btn-box">
-        <a href="listProduk.html">View All Products</a>
+        <a href="listProduk.php">View All Products</a>
     </div>
 </div>
 
