@@ -1,0 +1,87 @@
+.badan {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.badan h2 {
+    text-align: left;
+    color: #cc0000; /* Warna merah untuk judul */
+    font-size: 24px; /* Ukuran font lebih besar */
+    font-weight: bold; /* Tebal */
+    margin-bottom: 20px;
+}
+
+.keranjang-belanja {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.keranjang-belanja a {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.list-produk {
+    display: inline-block;
+    width: 23%;
+    margin: 1%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+    vertical-align: top;
+}
+
+.list-produk img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border: 1px solid #e1e1e1; /* Tambahkan border ke gambar */
+}
+
+.list-produk h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #cc0000; /* Warna merah untuk nama barang */
+}
+
+.list-produk h5 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    color: #ff6f61;
+}
+
+.tombol {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 5px 2px;
+    font-weight: bold; /* Tebal */
+}
+
+.tombol-detail {
+    background-color: #4CAF50; /* Warna hijau untuk tombol Detail */
+}
+
+.tombol-beli {
+    background-color: #FF0000; /* Warna merah untuk tombol Beli */
+}
+
+.tombol-detail:hover {
+    background-color: #45a049; /* Hijau lebih gelap saat hover */
+}
+
+.tombol-beli:hover {
+    background-color: #e60000; /* Merah lebih gelap saat hover */
+}
+
