@@ -158,7 +158,7 @@ body{
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a class="navbar-brand" href="index.php">Home</a></li>
-                            <li><a class="navbar-brand" href="FAQ.html">Faq</a></li>
+                            <li><a class="navbar-brand" href="FAQ.php">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
                             <li><a class="navbar-brand" href="index.php">Help</a></li>
                             <li><a class="navbar-brand" href="halamanLogin/index.php">Login/Register</a></li>
@@ -320,3 +320,4 @@ body{
 </body>
 
 </html>
+

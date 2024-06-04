@@ -59,6 +59,19 @@ if (isset($_POST["cari"])) {
     </svg>
   </span>
 </button>
+<br>
+<br>
+
+<button type="button" class="custom-button" onclick="location.href='pengiriman.php';">
+  <span class="custom-button__text">Check Pengiriman</span>
+  <span class="custom-button__icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="custom-svg">
+      <line y2="19" y1="5" x2="12" x1="12"></line>
+      <line y2="12" y1="12" x2="19" x1="5"></line>
+    </svg>
+  </span>
+</button>
+
 
   
     <a href="halamanLogout/logout.php" class="logout">

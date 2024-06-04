@@ -172,10 +172,13 @@ if (isset($_SESSION['login']) && isset($_SESSION['role'])) {
 			                <ul class="nav navbar-nav navbar-right" >
 			                <li class=" smooth-menu active"></li>
 							<li><a class="navbar-brand" href="index.php">Home</a></li>
+							<li><a class="navbar-brand" href="status_pengiriman.php">Status Pengiriman</a></li>
+
 			                <li><a class="navbar-brand" href="FAQ.php">Faq</a></li>
 							<li><a class="navbar-brand" href="form.php">Contact Us</a></li>
-							<li><a class="navbar-brand" href="index.php">Help</a></li>
+							
 						    <li><a class="navbar-brand" href="halamanLogin/registrasiLogin.php">Login/Register</a></li>
+							<li><a class="navbar-brand" href="simple-profile-page/dist/index.php">Profile</a></li>
 							<li><a class="navbar-brand" href="halamanLogout/logout.php">Logout</a></li>
 			                    <!-- <li class="smooth-menu"><a href="">profile</a></li> -->
 			                    <!-- <li class="smooth-menu"><a href="#portfolio">portfolio</a></li>

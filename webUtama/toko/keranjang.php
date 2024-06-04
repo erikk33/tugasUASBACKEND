@@ -8,7 +8,17 @@ if (!isset($_SESSION['login']) || !isset($_SESSION['role'])) {
     exit;
 }
 
+// Fungsi untuk menghapus barang dari keranjang
+function hapusBarang($id) {
+    if (isset($_SESSION['keranjang'][$id])) {
+        unset($_SESSION['keranjang'][$id]);
+    }
+}
+
 $keranjang = isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
+$totalHarga = array_reduce($keranjang, function ($sum, $item) {
+    return $sum + ($item['harga'] * $item['jumlah']);
+}, 0);
 ?>
 
 <!DOCTYPE html>
@@ -18,49 +28,68 @@ $keranjang = isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Keranjang Belanja</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead th {
-            background-color: #f2f2f2;
-            padding: 10px;
-        }
-
-        tbody td {
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="badan">
-        <h2>Keranjang Belanja</h2>
+<body class="bg-gray-100">
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold text-red-600 mb-4">Keranjang Belanja</h2>
 
-        <?php if (!empty($keranjang)) { ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Gambar</th>
-                        <th>Nama Barang</th>
-                        <th>Harga</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($keranjang as $item) { ?>
+        <?php if (count($keranjang) > 0): ?>
+            <div class="bg-white p-4 rounded shadow">
+                <table class="min-w-full bg-white">
+                    <thead>
                         <tr>
-                            <td><img src="assets/images/<?php echo htmlspecialchars($item['gambar']); ?>" alt="<?php echo htmlspecialchars($item['namaBarang']); ?>" style="width: 500px; height: 500px;"></td>
-                            <td><?php echo htmlspecialchars($item['namaBarang']); ?></td>
-                            <td>Rp <?php echo number_format($item['harga'], 0, ',', '.'); ?>,-</td>
+                            <th class="py-2">Nama Barang</th>
+                            <th class="py-2">Gambar</th>
+                            <th class="py-2">Harga</th>
+                            <th class="py-2">Jumlah</th>
+                            <th class="py-2">Subtotal</th>
+                            <th class="py-2">Aksi</th> <!-- Kolom baru untuk tombol hapus -->
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        <?php } else { ?>
-            <p>Keranjang belanja kosong.</p>
-        <?php } ?>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($keranjang as $id => $item): ?>
+                            <tr>
+                                <td class="py-2"><?php echo htmlspecialchars($item['namaBarang']); ?></td>
+                                <td class="py-2"><img src="assets/images/<?php echo htmlspecialchars($item['gambar']); ?>" alt="<?php echo htmlspecialchars($item['namaBarang']); ?>" class="w-16 h-16 object-cover"></td>
+                                <td class="py-2">Rp <?php echo number_format($item['harga'], 0, ',', '.'); ?>,-</td>
+                                <td class="py-2"><?php echo htmlspecialchars($item['jumlah']); ?></td>
+                                <td class="py-2">Rp <?php echo number_format($item['harga'] * $item['jumlah'], 0, ',', '.'); ?>,-</td>
+                                <td class="py-2">
+                                    <!-- Tombol untuk menghapus barang -->
+                                    <form action="" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                        <button type="submit" name="hapus" class="text-red-500">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="flex justify-end mt-4">
+                    <h4 class="text-xl font-bold">Total Harga: Rp <?php echo number_format($totalHarga, 0, ',', '.'); ?>,-</h4>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <a href="checkoutPayment/index.php" class="bg-red-500 text-white px-4 py-2 rounded">Checkout</a>
+                </div>
+            </div>
+        <?php else: ?>
+            <p>Keranjang belanja Anda kosong.</p>
+        <?php endif; ?>
+
+        <div class="flex justify-end mt-4">
+            <a href="listProduk.php" class="bg-green-500 text-white px-4 py-2 rounded">Lanjut Belanja</a>
+        </div>
     </div>
+
+    <?php
+    // Proses penghapusan barang dari keranjang jika tombol hapus diklik
+    if (isset($_POST['hapus']) && isset($_POST['id'])) {
+        hapusBarang($_POST['id']);
+        // Redirect agar halaman dimuat ulang setelah penghapusan barang
+        header("Location: keranjang.php");
+        exit;
+    }
+    ?>
 </body>
 </html>

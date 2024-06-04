@@ -26,11 +26,24 @@ if (isset($_GET['action']) && $_GET['action'] == 'add' && isset($_GET['namaBaran
         $_SESSION['keranjang'] = [];
     }
     
-    $_SESSION['keranjang'][] = [
-        'namaBarang' => $namaBarang,
-        'harga' => $harga,
-        'gambar' => $gambar
-    ];
+    $itemFound = false;
+    foreach ($_SESSION['keranjang'] as &$item) {
+        if ($item['namaBarang'] === $namaBarang) {
+            $item['jumlah'] += 1;
+            $itemFound = true;
+            break;
+        }
+    }
+    
+    if (!$itemFound) {
+        $_SESSION['keranjang'][] = [
+            'namaBarang' => $namaBarang,
+            'harga' => $harga,
+            'gambar' => $gambar,
+            'jumlah' => 1
+        ];
+    }
+    
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
 }
@@ -53,7 +66,6 @@ $result = $conn->query($sql);
         <h2 class="text-2xl font-bold text-red-600 mb-4">Produk Baru</h2>
         <div class="flex justify-end mb-4">
             <a href="index.php" class="bg-green-500 text-white px-4 py-2 rounded flex items-center">
-             
                 Home
             </a>
         </div>

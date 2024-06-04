@@ -197,4 +197,14 @@ body {
     color: #fffb01 !important;
 }
 
+/* Add or modify styles as needed */
+#pelanggan_id {
+    font-weight: bold;
+}
+
+#alamat_pelanggan[contenteditable="true"] {
+    border-bottom: 1px dashed #000;
+    cursor: text;
+}
+
 /* End */
