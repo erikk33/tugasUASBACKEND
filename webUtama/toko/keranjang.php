@@ -15,6 +15,14 @@ function hapusBarang($id) {
     }
 }
 
+// Proses penghapusan barang dari keranjang jika tombol hapus diklik
+if (isset($_POST['hapus']) && isset($_POST['id'])) {
+    hapusBarang($_POST['id']);
+    // Redirect agar halaman dimuat ulang setelah penghapusan barang
+    header("Location: keranjang.php");
+    exit;
+}
+
 $keranjang = isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
 $totalHarga = array_reduce($keranjang, function ($sum, $item) {
     return $sum + ($item['harga'] * $item['jumlah']);
@@ -81,15 +89,5 @@ $totalHarga = array_reduce($keranjang, function ($sum, $item) {
             <a href="listProduk.php" class="bg-green-500 text-white px-4 py-2 rounded">Lanjut Belanja</a>
         </div>
     </div>
-
-    <?php
-    // Proses penghapusan barang dari keranjang jika tombol hapus diklik
-    if (isset($_POST['hapus']) && isset($_POST['id'])) {
-        hapusBarang($_POST['id']);
-        // Redirect agar halaman dimuat ulang setelah penghapusan barang
-        header("Location: keranjang.php");
-        exit;
-    }
-    ?>
 </body>
 </html>
