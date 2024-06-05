@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 01:15 AM
+-- Generation Time: Jun 05, 2024 at 11:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,25 +41,7 @@ CREATE TABLE `contactus` (
 --
 
 INSERT INTO `contactus` (`id`, `nama`, `email`, `phone`, `pesan`, `pesananUserID`) VALUES
-(1, 'ewrfw', 'rwrw', 'yhtfytr', 'rerewrrwerewrewr', NULL),
-(2, 'Putu Erik Cahyadi', 'erikxzc@gmail.com', 'ewrwr', '085857619010', NULL),
-(3, 'testubgcho', 'erikxzc@gmail.com', 'fsrf', '085857619010', NULL),
-(4, 'Putu Erik Cahyadi', 'erikxzc@gmail.com', 'rewrew', '085857619010', NULL),
-(5, 'kawakami', 'imass@gmail.com', 'testring saja', '085857619010', NULL),
-(6, 'dimas', 'doukana@gmail.com', 'tdds', '43432', NULL),
-(7, 'Putu Erik Cahyadi', 'erikxzc@gmail.com', 'FSFSF', '085857619010', NULL),
-(8, 'fdsfs', 'fsfs@gmail.com', 'tretre', '45435345', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kategoribarang`
---
-
-CREATE TABLE `kategoribarang` (
-  `id` int(11) NOT NULL,
-  `namaKategori` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(16, 'mikachan', 'erikxzc@gmail.com', '085857619010', 'dsfdfds', 71);
 
 -- --------------------------------------------------------
 
@@ -72,6 +54,17 @@ CREATE TABLE `pelanggan` (
   `namaPelanggan` varchar(255) NOT NULL,
   `alamatPelanggan` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id`, `namaPelanggan`, `alamatPelanggan`) VALUES
+(1, 'sudo', 'sudo'),
+(2, 'mudama', 'badung bali'),
+(3, 'sim2', 'tokyo japan'),
+(4, 'erik2', 'bali denpasar indonesia'),
+(5, 'abiyoga', 'denpasar dekat tiara kode pos 80118');
 
 -- --------------------------------------------------------
 
@@ -86,6 +79,18 @@ CREATE TABLE `pembayaran` (
   `pesanan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `metodePembayaran`, `jumlahPembayaran`, `pesanan_id`) VALUES
+(27, 'gopay', 100000.00, 9635),
+(28, 'gopay', 750000.00, 9636),
+(29, 'ovo', 750000.00, 9637),
+(30, 'shopeepay', 100000.00, 9638),
+(31, 'mandiri', 228000.00, 9639),
+(32, 'shopeepay', 2600000.00, 9640);
+
 -- --------------------------------------------------------
 
 --
@@ -96,20 +101,20 @@ CREATE TABLE `pengguna` (
   `id` int(11) NOT NULL,
   `namaPengguna` varchar(255) NOT NULL,
   `kataSandi` varchar(255) NOT NULL,
-  `pelanggan_id` int(11) DEFAULT NULL
+  `pelanggan_id` int(11) DEFAULT NULL,
+  `role` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `namaPengguna`, `kataSandi`, `pelanggan_id`) VALUES
-(3, 'testinga', '$2y$10$BjdRWfFE7mWtAuhjUrKwFebjXXra07Dv8EY4HBz2sLdPuGqkjHakS', NULL),
-(4, 'choitocha', '$2y$10$NBLq2fe4G0TEyR7yZn.pmOAy/wj/CTZb.g8dNE6eagIHpCfnOjv82', NULL),
-(5, 'nonochan', '$2y$10$w79/f1tx.ovjaQGZ/xO9JebB1jCAdxYJhlpETNB9V4nUtwlXzl9.2', NULL),
-(6, 'nanochanmo', '$2y$10$LlLyl7W6br.sDMKp1x0Jx.mBFu7d5BA9RMxEHzzgR51Y0oFyiag9a', NULL),
-(7, 'erikkukawakami', '$2y$10$iHUXOt/9JM3D90Y8PrJDteeQm4vX8yW95dZuEUDbPPvDUTgJFq992', NULL),
-(8, 'dimaskawakami', '$2y$10$Zterj4wU5qNiEwPe/3dEMu1q6xJF.tHMy6LQagURET06Vmu3v307m', NULL);
+INSERT INTO `pengguna` (`id`, `namaPengguna`, `kataSandi`, `pelanggan_id`, `role`) VALUES
+(29, 'sudo', '$2y$10$5uDTkn1g6Rev7.NRzX0Ite85QBKqB4BPeVXHrwyhyKT0cfQyEpUiq', 1, 'user'),
+(30, 'mudama', '$2y$10$r93vdptmZRrq0OcDiNst2e2.zDHfj5QsCXo3cd5M.CpOV5miuVLFS', 2, 'user'),
+(31, 'sim2', '$2y$10$2PKLOO8A.KxOH5T.aRFsz.sSwxMqfGYQ4rs2UMZAUsqaQC0Cu.xNe', 3, 'admin'),
+(32, 'erik2', '$2y$10$SFH9cC.70bFcctMWdBjhc.vNVl9pXBWW74PIxKH1YmaRvCcnZU/zi', 4, 'user'),
+(33, 'abiyoga', '$2y$10$XJdojx3KiY/wJ8NdKSDFieVTDNKN/fcGG5T1AkmxqONb0SaP0SEWG', 5, 'user');
 
 -- --------------------------------------------------------
 
@@ -125,6 +130,18 @@ CREATE TABLE `pengiriman` (
   `pesanan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pengiriman`
+--
+
+INSERT INTO `pengiriman` (`id`, `metodePengiriman`, `statusPengiriman`, `tanggalKirim`, `pesanan_id`) VALUES
+(27, 'j&amp;t express', 'Dikirim', '2024-06-04', 9635),
+(28, 'j&amp;t express', 'Dikirim', '2024-06-04', 9636),
+(29, 'j&amp;t express', 'Dikirim', '2024-06-04', 9637),
+(30, 'grab express', 'Dikirim', '2024-06-04', 9638),
+(31, 'gojek instant courier', 'Pending', '2024-06-04', 9639),
+(32, 'grab express', 'Dikirim', '2024-06-05', 9640);
+
 -- --------------------------------------------------------
 
 --
@@ -135,6 +152,18 @@ CREATE TABLE `pesanan` (
   `id` int(11) NOT NULL,
   `pelanggan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id`, `pelanggan_id`) VALUES
+(9635, 4),
+(9636, 4),
+(9637, 4),
+(9639, 4),
+(9640, 4),
+(9638, 5);
 
 -- --------------------------------------------------------
 
@@ -151,6 +180,24 @@ CREATE TABLE `pesananuser` (
   `pesanan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pesananuser`
+--
+
+INSERT INTO `pesananuser` (`id`, `alamatUser`, `namaBarang`, `jenisBarang`, `jumlahBarang`, `pesanan_id`) VALUES
+(71, 'bali denpasar indonesia', 'chicken nugget fiesta 500 GR', '', '1', 9635),
+(72, 'perumahan graha parta lestari blok j no4', 'teh sosro 250 ml', '', '1', 9636),
+(73, 'perumahan graha parta lestari blok j no4', 'Beras', '', '1', 9636),
+(74, 'jalan gunung patas no 4', 'teh sosro 250 ml', '', '1', 9637),
+(75, 'jalan gunung patas no 4', 'Beras', '', '1', 9637),
+(76, 'jalan tiara no 4', 'chicken nugget fiesta 500 GR', '', '1', 9638),
+(77, 'dekat stikom tunggu di depan bogaloka', 'teh sosro 250 ml', '', '4', 9639),
+(78, 'dekat stikom tunggu di depan bogaloka', 'chicken nugget fiesta 500 GR', '', '2', 9639),
+(79, 'dekat stikom tunggu di depan bogaloka', 'teh botol 500 ml v2', '', '1', 9639),
+(80, 'banjar pitik pemogan', 'Beras', '', '4', 9640),
+(81, 'banjar pitik pemogan', 'teh sosro 250 ml', '', '2', 9640),
+(82, 'banjar pitik pemogan', 'chicken nugget fiesta 500 GR', '', '1', 9640);
+
 -- --------------------------------------------------------
 
 --
@@ -162,8 +209,20 @@ CREATE TABLE `stockbarang` (
   `namaBarang` varchar(255) NOT NULL,
   `jenisBarang` varchar(255) NOT NULL,
   `jumlahBarang` varchar(255) NOT NULL,
-  `kategori_id` int(11) DEFAULT NULL
+  `harga` float NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `stockbarang`
+--
+
+INSERT INTO `stockbarang` (`id`, `namaBarang`, `jenisBarang`, `jumlahBarang`, `harga`, `gambar`) VALUES
+(8, 'Beras', 'Makanan', '10', 500000, 'beras.jpg'),
+(20, 'teh sosro 250 ml', 'Minuman', '50', 5500, 'tehbotol350ml-removebg-preview.png'),
+(25, 'chicken nugget fiesta 500 GR', 'Frozen food', '30', 100000, 'Daging.jpg'),
+(27, 'teh botol 500 ml v2', 'Minuman', '80', 6000, 'tehbotol350ml-removebg-preview.png'),
+(43, 'teh sosro 250 ml', 'Minuman', '12', 250000, '665d4642b2ec3.jpg');
 
 --
 -- Indexes for dumped tables
@@ -175,12 +234,6 @@ CREATE TABLE `stockbarang` (
 ALTER TABLE `contactus`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pesananUserID` (`pesananUserID`);
-
---
--- Indexes for table `kategoribarang`
---
-ALTER TABLE `kategoribarang`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pelanggan`
@@ -227,8 +280,7 @@ ALTER TABLE `pesananuser`
 -- Indexes for table `stockbarang`
 --
 ALTER TABLE `stockbarang`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `kategori_id` (`kategori_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -238,55 +290,49 @@ ALTER TABLE `stockbarang`
 -- AUTO_INCREMENT for table `contactus`
 --
 ALTER TABLE `contactus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `kategoribarang`
---
-ALTER TABLE `kategoribarang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9641;
 
 --
 -- AUTO_INCREMENT for table `pesananuser`
 --
 ALTER TABLE `pesananuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `stockbarang`
 --
 ALTER TABLE `stockbarang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables
@@ -326,14 +372,7 @@ ALTER TABLE `pesanan`
 -- Constraints for table `pesananuser`
 --
 ALTER TABLE `pesananuser`
-  ADD CONSTRAINT `pesananuser_ibfk_1` FOREIGN KEY (`id`) REFERENCES `stockbarang` (`id`),
   ADD CONSTRAINT `pesananuser_ibfk_2` FOREIGN KEY (`pesanan_id`) REFERENCES `pesanan` (`id`);
-
---
--- Constraints for table `stockbarang`
---
-ALTER TABLE `stockbarang`
-  ADD CONSTRAINT `stockbarang_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategoribarang` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
