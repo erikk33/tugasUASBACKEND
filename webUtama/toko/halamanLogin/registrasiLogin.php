@@ -3,6 +3,9 @@ require 'function.php';
 
 session_start();
 
+// Automatic login if "remember me" cookie is set
+$user->autoLogin();
+
 if (isset($_POST["register"])) {
     if ($user->registrasi($_POST) > 0) {
         echo "<script>alert('User baru berhasil ditambahkan!');</script>";

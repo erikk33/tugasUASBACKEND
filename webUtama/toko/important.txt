@@ -1,0 +1,9 @@
+menggunakan cookie login jika diklik remember me maka auto login selama 30 hari menggunakan cookie
+
+
+serta ada fitur login dan register yang menggunakan konsep role user dan admin 
+
+
+untuk akun admin 
+username = sim2
+password = sim2

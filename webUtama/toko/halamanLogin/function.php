@@ -62,7 +62,9 @@ class User {
             $_SESSION["pelanggan_id"] = 0;
 
             if ($remember) {
-                setcookie('login', 'true', time() + 120);
+                setcookie('login', 'true', time() + (86400 * 30), "/"); // 30 days
+                setcookie('username', $username, time() + (86400 * 30), "/");
+                setcookie('password', $password, time() + (86400 * 30), "/");
             }
 
             header("Location: ../admin.php");
@@ -80,7 +82,9 @@ class User {
                 $_SESSION["pelanggan_id"] = $row["pelanggan_id"];
 
                 if ($remember) {
-                    setcookie('login', 'true', time() + 120);
+                    setcookie('login', 'true', time() + (86400 * 30), "/"); // 30 days
+                    setcookie('username', $username, time() + (86400 * 30), "/");
+                    setcookie('password', $password, time() + (86400 * 30), "/");
                 }
 
                 if ($row["role"] === "admin") {
@@ -94,8 +98,37 @@ class User {
 
         return false;
     }
+
+    public function autoLogin() {
+        if (isset($_COOKIE['login']) && $_COOKIE['login'] == 'true') {
+            $username = $_COOKIE['username'];
+            $password = $_COOKIE['password'];
+
+            $query = "SELECT * FROM pengguna WHERE namaPengguna = '$username'";
+            $result = $this->conn->query($query);
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if (password_verify($password, $row["kataSandi"])) {
+                    $_SESSION["login"] = true;
+                    $_SESSION["role"] = $row["role"];
+                    $_SESSION["pelanggan_id"] = $row["pelanggan_id"];
+
+                    if ($row["role"] === "admin") {
+                        header("Location: ../admin.php");
+                    } else {
+                        header("Location: ../index.php");
+                    }
+                    exit;
+                }
+            }
+        }
+    }
 }
 
 $database = new Database();
 $user = new User($database);
+
+
+
 ?>
