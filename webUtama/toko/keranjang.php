@@ -2,10 +2,10 @@
 session_start();
 
 
-// Definisikan kelas AppSessionHandler di dalam file ini
+// kelas AppSessionHandler di dalam file ini
 class AppSessionHandler {
     public function __construct() {
-        // Pastikan sesi telah dimulai
+        // sesi telah dimulai
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
