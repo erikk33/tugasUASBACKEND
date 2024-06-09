@@ -26,8 +26,7 @@
 <div class="navbar-top bg-white shadow p-4 flex justify-between items-center">
     <h1 class="text-2xl font-semibold">Profile</h1>
     <ul class="flex space-x-4">
-        <li><a href="#message" class="relative"><span class="icon-count absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">29</span><i class="fa fa-envelope fa-2x text-gray-600"></i></a></li>
-        <li><a href="#notification" class="relative"><span class="icon-count absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">59</span><i class="fa fa-bell fa-2x text-gray-600"></i></a></li>
+        
         <li><a href="/projectUASpenjualan/webUtama/toko/index.php"><i class="fa fa-sign-out-alt fa-2x text-gray-600"></i></a></li>
     </ul>
 </div>
@@ -46,10 +45,7 @@
                 <a href="#profile" class="block py-2 text-lg text-blue-500">Profile</a>
                 <hr class="border-gray-200">
             </div>
-            <div class="url">
-                <a href="#settings" class="block py-2 text-lg text-gray-700">Settings</a>
-                <hr class="border-gray-200">
-            </div>
+          
         </div>
     </div>
     <!-- End Sidenav -->

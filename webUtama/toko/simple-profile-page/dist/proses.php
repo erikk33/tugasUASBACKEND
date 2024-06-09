@@ -1,40 +1,46 @@
 <?php
-// Establish connection to database
-$servername = "localhost";
-$username = "root";  // use your database username
-$password = "";      // use your database password
-$dbname = "projectpenjualan";
+class Database {
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "projectpenjualan";
+    public $conn;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+    public function __construct() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
+    }
+
+    public function updateAddress($pelanggan_id, $alamatPelanggan) {
+        $alamatPelanggan = $this->conn->real_escape_string($alamatPelanggan);
+        $sql = "UPDATE pelanggan SET alamatPelanggan='$alamatPelanggan' WHERE id='$pelanggan_id'";
+
+        if ($this->conn->query($sql) === TRUE) {
+            echo "<script>alert('Record updated successfully');</script>";
+            echo "<script>window.location.href = 'index.php';</script>";
+        } else {
+            echo "Error updating record: " . $this->conn->error;
+        }
+    }
+
+    public function __destruct() {
+        $this->conn->close();
+    }
 }
 
-// If the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     session_start();
     if (isset($_SESSION["pelanggan_id"]) && isset($_POST["alamatPelanggan"])) {
         $pelanggan_id = $_SESSION["pelanggan_id"];
-        $alamatPelanggan = mysqli_real_escape_string($conn, $_POST["alamatPelanggan"]);
+        $alamatPelanggan = $_POST["alamatPelanggan"];
 
-        // Update pelanggan data
-        $sql = "UPDATE pelanggan SET alamatPelanggan='$alamatPelanggan' WHERE id='$pelanggan_id'";
-
-        if ($conn->query($sql) === TRUE) {
-            // Memanggil fungsi JavaScript untuk menampilkan pemberitahuan
-    echo "<script>alert('Record updated successfully');</script>";
-    // Mengarahkan ke halaman index.php setelah pemberitahuan ditampilkan
-    echo "<script>window.location.href = 'index.php';</script>";
-        } else {
-            echo "Error updating record: " . $conn->error;
-        }
+        $database = new Database();
+        $database->updateAddress($pelanggan_id, $alamatPelanggan);
     } else {
         echo "Pelanggan ID or Alamat Pelanggan is not set.";
     }
 }
-
-$conn->close();
 ?>

@@ -1,50 +1,101 @@
-<?php 
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "projectpenjualan";
+<?php
+class Database {
+    private $server = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $database = "projectpenjualan";
+    public $conn;
 
-$conn = mysqli_connect($server, $username, $password, $database);
-if (mysqli_connect_error()) {
-    echo "DB gagal terkoneksi";
+    public function __construct() {
+        $this->conn = new mysqli($this->server, $this->username, $this->password, $this->database);
+        if ($this->conn->connect_error) {
+            die("DB gagal terkoneksi: " . $this->conn->connect_error);
+        }
+    }
 }
 
-function registrasi($data){
-    global $conn;
-    $username = strtolower(stripslashes($data["username"]));
-    $password = mysqli_real_escape_string($conn, $data["password"]);
-    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
-    $role = $data["role"];
-    $namaPelanggan = mysqli_real_escape_string($conn, $data["namaPelanggan"]);
-    $alamatPelanggan = mysqli_real_escape_string($conn, $data["alamatPelanggan"]);
+class User {
+    private $conn;
 
-    // Check username sudah ada atau belum
-    $result = mysqli_query($conn, "SELECT namaPengguna FROM pengguna WHERE namaPengguna = '$username'");
-    if (mysqli_fetch_assoc($result)) {
-        echo "<script>
-        alert('username sudah terdaftar!')
-        </script>";
-        return false;
+    public function __construct($db) {
+        $this->conn = $db->conn;
     }
 
-    // Konfirmasi password
-    if ($password !== $password2) {
-        echo "<script>
-        alert('konfirmasi password tidak sesuai')
-        </script>";
-        return false;
+    public function registrasi($data) {
+        $username = strtolower(stripslashes($data["username"]));
+        $password = $this->conn->real_escape_string($data["password"]);
+        $password2 = $this->conn->real_escape_string($data["password2"]);
+        $namaPelanggan = $this->conn->real_escape_string($data["namaPelanggan"]);
+        $alamatPelanggan = $this->conn->real_escape_string($data["alamatPelanggan"]);
+
+        // Check username already exists
+        $result = $this->conn->query("SELECT namaPengguna FROM pengguna WHERE namaPengguna = '$username'");
+        if ($result->fetch_assoc()) {
+            echo "<script>alert('Username sudah terdaftar!');</script>";
+            return false;
+        }
+
+        // Confirm password
+        if ($password !== $password2) {
+            echo "<script>alert('Konfirmasi password tidak sesuai');</script>";
+            return false;
+        }
+
+        // Encrypt password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Add customer data to db
+        $this->conn->query("INSERT INTO pelanggan (namaPelanggan, alamatPelanggan) VALUES ('$namaPelanggan', '$alamatPelanggan')");
+        $pelanggan_id = $this->conn->insert_id;
+
+        // Add new user to db with role 'user'
+        $this->conn->query("INSERT INTO pengguna (namaPengguna, kataSandi, role, pelanggan_id) VALUES ('$username', '$password', 'user', '$pelanggan_id')");
+        
+        return $this->conn->affected_rows;
     }
 
-    // Enkripsi password
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    public function login($username, $password, $remember) {
+        // Special case for sim2 admin login
+        if ($username == 'sim2' && $password == 'sim2') {
+            $_SESSION["login"] = true;
+            $_SESSION["role"] = 'admin';
+            $_SESSION["pelanggan_id"] = 0;
 
-    // Tambahkan data pelanggan ke db
-    mysqli_query($conn, "INSERT INTO pelanggan (namaPelanggan, alamatPelanggan) VALUES ('$namaPelanggan', '$alamatPelanggan')");
-    $pelanggan_id = mysqli_insert_id($conn);
+            if ($remember) {
+                setcookie('login', 'true', time() + 120);
+            }
 
-    // Tambahkan user baru ke db
-    mysqli_query($conn, "INSERT INTO pengguna (namaPengguna, kataSandi, role, pelanggan_id) VALUES ('$username', '$password', '$role', '$pelanggan_id')");
-    
-    return mysqli_affected_rows($conn);
+            header("Location: ../admin.php");
+            exit;
+        }
+
+        $query = "SELECT * FROM pengguna WHERE namaPengguna = '$username'";
+        $result = $this->conn->query($query);
+        
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            if (password_verify($password, $row["kataSandi"])) {
+                $_SESSION["login"] = true;
+                $_SESSION["role"] = $row["role"];
+                $_SESSION["pelanggan_id"] = $row["pelanggan_id"];
+
+                if ($remember) {
+                    setcookie('login', 'true', time() + 120);
+                }
+
+                if ($row["role"] === "admin") {
+                    header("Location: ../admin.php");
+                } else {
+                    header("Location: ../index.php");
+                }
+                exit;
+            }
+        }
+
+        return false;
+    }
 }
+
+$database = new Database();
+$user = new User($database);
 ?>

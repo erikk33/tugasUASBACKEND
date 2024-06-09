@@ -1,33 +1,86 @@
 <?php
 session_start();
+
+// Definisikan kelas AppSessionHandler di dalam file ini
+class AppSessionHandler {
+    public function __construct() {
+        // Pastikan sesi telah dimulai
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function checkLogin() {
+        // Periksa apakah sesi login dan rolenya sudah ditentukan 
+        return isset($_SESSION['login']) && isset($_SESSION['role']);
+    }
+
+    public function redirectBasedOnRole() {
+        // Jika pengguna telah login, periksa perannya
+        if ($this->checkLogin()) {
+            if ($_SESSION['role'] === 'admin') {
+                header("Location: admin.php");
+                exit;
+            }
+           
+        } else {
+            // nah yang terkahir Jika tidak ada sesi login, arahkan ke halaman login
+            header("Location: ./halamanLogin/registrasiLogin.php");
+            exit;
+        }
+    }
+}
+
+// Buat instance lagi dari AppSessionHandler
+$sessionHandler = new AppSessionHandler();
+
+// Periksa login dan lakukan redirect berdasarkan role
+$sessionHandler->redirectBasedOnRole();
+
+
+?>
+<?php
+
 include 'db_pembayaran.php'; // Include your database connection file
 
-// Check if pelanggan_id is set in session
-if (!isset($_SESSION['pelanggan_id'])) {
-    die("Pelanggan tidak ditemukan.");
-}
+class Pengiriman {
+    private $conn;
+    private $pelanggan_id;
 
-$pelanggan_id = $_SESSION['pelanggan_id'];
-
-// Fetch pesanan IDs for the pelanggan_id
-$sql = "SELECT id FROM pesanan WHERE pelanggan_id = $pelanggan_id";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $pesanan_ids = [];
-    while ($row = $result->fetch_assoc()) {
-        $pesanan_ids[] = $row['id'];
+    public function __construct($db) {
+        $this->conn = $db->conn;
+        if (!isset($_SESSION['pelanggan_id'])) {
+            die("Pelanggan tidak ditemukan.");
+        }
+        $this->pelanggan_id = $_SESSION['pelanggan_id'];
     }
-    
-    // Convert array to a comma-separated string for the SQL query
-    $pesanan_ids_str = implode(",", $pesanan_ids);
 
-    // Fetch pengiriman data for the pesanan IDs
-    $sql = "SELECT metodePengiriman, statusPengiriman, tanggalKirim FROM pengiriman WHERE pesanan_id IN ($pesanan_ids_str)";
-    $pengiriman_result = $conn->query($sql);
-} else {
-    $pengiriman_result = false;
+    public function getPengirimanData() {
+        // Fetch pesanan IDs for the pelanggan_id
+        $sql = "SELECT id FROM pesanan WHERE pelanggan_id = $this->pelanggan_id";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $pesanan_ids = [];
+            while ($row = $result->fetch_assoc()) {
+                $pesanan_ids[] = $row['id'];
+            }
+
+            // Convert array to a comma-separated string for the SQL query
+            $pesanan_ids_str = implode(",", $pesanan_ids);
+
+            // Fetch pengiriman data for the pesanan IDs
+            $sql = "SELECT metodePengiriman, statusPengiriman, tanggalKirim FROM pengiriman WHERE pesanan_id IN ($pesanan_ids_str)";
+            return $this->conn->query($sql);
+        } else {
+            return false;
+        }
+    }
 }
+
+$database = new Database();
+$pengiriman = new Pengiriman($database);
+$pengiriman_result = $pengiriman->getPengirimanData();
 ?>
 
 <!DOCTYPE html>

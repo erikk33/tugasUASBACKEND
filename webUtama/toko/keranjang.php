@@ -1,12 +1,44 @@
 <?php
 session_start();
 
-// Cek apakah pengguna sudah login dan memiliki peran
-if (!isset($_SESSION['login']) || !isset($_SESSION['role'])) {
-    // Jika pengguna belum login, arahkan ke halaman login
-    header("Location: ./halamanLogin/registrasiLogin.php");
-    exit;
+
+// Definisikan kelas AppSessionHandler di dalam file ini
+class AppSessionHandler {
+    public function __construct() {
+        // Pastikan sesi telah dimulai
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
+    public function checkLogin() {
+        // Periksa apakah sesi login dan role telah di-set
+        return isset($_SESSION['login']) && isset($_SESSION['role']);
+    }
+
+    public function redirectBasedOnRole() {
+        // Jika pengguna telah login, periksa perannya
+        if ($this->checkLogin()) {
+            if ($_SESSION['role'] === 'admin') {
+                header("Location: admin.php");
+                exit;
+            }
+            // Tambahkan logika tambahan untuk peran lain jika diperlukan
+        } else {
+            // Jika tidak ada sesi login, arahkan ke halaman login
+            header("Location: ./halamanLogin/registrasiLogin.php");
+            exit;
+        }
+    }
 }
+
+// Buat instance dari AppSessionHandler
+$sessionHandler = new AppSessionHandler();
+
+// Periksa login dan lakukan redirect berdasarkan role
+$sessionHandler->redirectBasedOnRole();
+
+
 
 // Fungsi untuk menghapus barang dari keranjang
 function hapusBarang($id) {

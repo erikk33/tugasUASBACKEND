@@ -1,34 +1,62 @@
 <?php
 session_start();
-include 'dbPembayaran.php'; // Include your database connection file
 
-$keranjang = isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
-$totalHarga = array_reduce($keranjang, function ($sum, $item) {
-    return $sum + ($item['harga'] * $item['jumlah']);
-}, 0);
 
-// Count the number of items in the cart
-$jumlahBarang = array_reduce($keranjang, function ($sum, $item) {
-    return $sum + $item['jumlah'];
-}, 0);
 
-// Check if pelanggan_id is set in session
+include 'dbPembayaran.php';
+
+class User {
+    private $conn;
+
+    public function __construct($conn) {
+        $this->conn = $conn;
+    }
+
+    public function getUserName($pelanggan_id) {
+        $sql = "SELECT namaPelanggan FROM pelanggan WHERE id = $pelanggan_id";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['namaPelanggan'];
+        } else {
+            die("Pelanggan tidak ditemukan.");
+        }
+    }
+}
+
+class Cart {
+    public function getCartItems() {
+        return isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : [];
+    }
+
+    public function getTotalPrice($keranjang) {
+        return array_reduce($keranjang, function ($sum, $item) {
+            return $sum + ($item['harga'] * $item['jumlah']);
+        }, 0);
+    }
+
+    public function getTotalItems($keranjang) {
+        return array_reduce($keranjang, function ($sum, $item) {
+            return $sum + $item['jumlah'];
+        }, 0);
+    }
+}
+
+$db = new Database();
+$user = new User($db->conn);
+$cart = new Cart();
+
+$keranjang = $cart->getCartItems();
+$totalHarga = $cart->getTotalPrice($keranjang);
+$jumlahBarang = $cart->getTotalItems($keranjang);
+
 if (!isset($_SESSION['pelanggan_id'])) {
     die("Pelanggan tidak ditemukan.");
 }
 
 $pelanggan_id = $_SESSION['pelanggan_id'];
-
-// Fetch pelanggan data from database
-$sql = "SELECT namaPelanggan FROM pelanggan WHERE id = $pelanggan_id";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $namaPelanggan = $row['namaPelanggan'];
-} else {
-    die("Pelanggan tidak ditemukan.");
-}
+$namaPelanggan = $user->getUserName($pelanggan_id);
 ?>
 
 <!DOCTYPE html>

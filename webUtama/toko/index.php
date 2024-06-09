@@ -1,31 +1,46 @@
-<?php 
+<?php
 session_start();
-// Jika tidak ada sesi login, arahkan ke halaman login
-// if (!isset($_SESSION["login"])){
-//   header("Location: ./halamanLogin/registrasiLogin.php");
-//   exit;
 
-  
-// }
-
-// Check if the user is logged in and has a role
-if (isset($_SESSION['login']) && isset($_SESSION['role'])) {
-    // If the role is 'user', redirect to admin.php
-
-	
-	if ($_SESSION['role'] === 'admin') {
-        header("Location: admin.php");
-        exit;
+// Definisikan kelas AppSessionHandler di dalam file ini
+class AppSessionHandler {
+    public function __construct() {
+        // Pastikan sesi telah dimulai
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
-	
-} else {
-    // If the user is not logged in, redirect to the login page
-    header("Location: ./halamanLogin/registrasiLogin.php");
-    exit;
+
+    public function checkLogin() {
+        // Periksa apakah sesi login dan role telah di-set
+        return isset($_SESSION['login']) && isset($_SESSION['role']);
+    }
+
+    public function redirectBasedOnRole() {
+        // Jika pengguna telah login, periksa perannya
+        if ($this->checkLogin()) {
+            if ($_SESSION['role'] === 'admin') {
+                header("Location: admin.php");
+                exit;
+            }
+            // Tambahkan logika tambahan untuk peran lain jika diperlukan
+        } else {
+            // Jika tidak ada sesi login, arahkan ke halaman login
+            header("Location: ./halamanLogin/registrasiLogin.php");
+            exit;
+        }
+    }
 }
+
+// Buat instance dari AppSessionHandler
+$sessionHandler = new AppSessionHandler();
+
+// Periksa login dan lakukan redirect berdasarkan role
+$sessionHandler->redirectBasedOnRole();
 
 
 ?>
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 

@@ -1,20 +1,16 @@
 <?php 
-// Config pendaftaran account
 require 'function.php';
 
 session_start();
 
 if (isset($_POST["register"])) {
-    if (registrasi($_POST) > 0) {
-        echo "<script>
-        alert('User baru berhasil ditambahkan !'); 
-        </script>";
+    if ($user->registrasi($_POST) > 0) {
+        echo "<script>alert('User baru berhasil ditambahkan!');</script>";
     } else {
-        echo mysqli_error($conn);
+        echo mysqli_error($database->conn);
     }
 }
 
-// Jika session login sudah diset, redirect langsung ke halaman index.php
 if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
     header("Location: ../index.php");
     exit;
@@ -23,35 +19,11 @@ if (isset($_SESSION["login"]) && $_SESSION["login"] === true) {
 if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $role = $_POST["role"];
+    $remember = isset($_POST["remember"]);
 
-    // Query untuk memeriksa apakah username dan role cocok
-    $query = "SELECT * FROM pengguna WHERE namaPengguna = '$username' AND role = '$role'";
-    $result = mysqli_query($conn, $query);
-    if (mysqli_num_rows($result) == 1) {
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($password, $row["kataSandi"])) {
-            $_SESSION["login"] = true;
-            $_SESSION["role"] = $row["role"];
-            $_SESSION["pelanggan_id"] = $row["pelanggan_id"];
-
-            // Cek remember me
-            if (isset($_POST['remember'])) {
-                // Buat cookie
-                setcookie('login', 'true', time() + 120);
-            }
-
-            // Redirect based on role
-            if ($row["role"] === "admin") {
-                header("Location: ../admin.php");
-            } else {
-                header("Location: ../index.php");
-            }
-            exit;
-        }
+    if (!$user->login($username, $password, $remember)) {
+        $error = true;
     }
-
-    $error = true;
 }
 ?>
 
@@ -83,13 +55,6 @@ if (isset($_POST["login"])) {
                 <input type="password" name="password2" placeholder="Konfirmasi Password" required />
                 <input type="text" name="namaPelanggan" placeholder="Nama Pelanggan" required />
                 <input type="text" name="alamatPelanggan" placeholder="Alamat Pelanggan" required />
-                <div class="dropdown">
-                    <select name="role" id="roleSelect" required>
-                        <option value="">Select Role</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
                 <input type="submit" value="Signup" name="register" />
                 <button class="btn btn-light" onclick="window.location.href='../index.php'" type="button">Home</button>
             </form>
@@ -102,18 +67,11 @@ if (isset($_POST["login"])) {
         <div class="form login">
             <header>Login</header>
             <form action="" method="post">
-                <input type="text" name="username" placeholder="username" required />
+                <input type="text" name="username" placeholder="Username" required />
                 <input type="password" name="password" placeholder="Password" required />
-                <div class="dropdown">
-                    <select name="role" id="roleSelect" required>
-                        <option value="">Select Role</option>
-                        <option value="user">User</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
                 <div class="checkbox">
                     <input type="checkbox" name="remember" id="remember" />
-                    <label for="remember" style="color: black;">remember me</label>
+                    <label for="remember" style="color: black;">Remember me</label>
                 </div>
                 <input type="submit" name="login" value="Login" />
                 <button class="btn btn-light" onclick="window.location.href='../index.php'" type="button">Home</button>

@@ -1,14 +1,16 @@
 <?php
-$servername = "localhost"; // Change to your server
-$username = "root"; // Change to your database username
-$password = ""; // Change to your database password
-$dbname = "projectpenjualan"; // Change to your database name
+class Database {
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "projectpenjualan";
+    public $conn;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    public function __construct() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
+        }
+    }
 }
 ?>
