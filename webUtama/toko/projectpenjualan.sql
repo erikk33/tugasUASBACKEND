@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 12:15 PM
+-- Generation Time: Jun 10, 2024 at 05:10 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `contactus` (
 --
 
 INSERT INTO `contactus` (`id`, `nama`, `email`, `phone`, `pesan`, `pesananUserID`) VALUES
-(16, 'mikachan', 'erikxzc@gmail.com', '085857619010', 'dsfdfds', 71);
+(16, 'mikachan', 'erikxzc@gmail.com', '085857619010', 'dsfdfds', 71),
+(17, 'Putu Erik Cahyadi', 'erikxzc@gmail.com', '085857619010', 'tesitng new hari rabu', 71);
 
 -- --------------------------------------------------------
 
@@ -63,8 +64,10 @@ INSERT INTO `pelanggan` (`id`, `namaPelanggan`, `alamatPelanggan`) VALUES
 (1, 'sudo', 'sudo'),
 (2, 'mudama', 'badung bali'),
 (3, 'sim2', 'tokyo japan'),
-(4, 'erik2', 'bali denpasar indonesia'),
-(5, 'abiyoga', 'denpasar dekat tiara kode pos 80118');
+(4, 'erik2', 'buleleng bali , indonesia'),
+(5, 'abiyoga', 'denpasar dekat tiara kode pos 80118'),
+(6, 'mosangking', 'jawa timur banyuwangi'),
+(7, 'mokaiwa', 'osaka japan');
 
 -- --------------------------------------------------------
 
@@ -89,7 +92,11 @@ INSERT INTO `pembayaran` (`id`, `metodePembayaran`, `jumlahPembayaran`, `pesanan
 (29, 'ovo', 750000.00, 9637),
 (30, 'shopeepay', 100000.00, 9638),
 (31, 'mandiri', 228000.00, 9639),
-(32, 'shopeepay', 2600000.00, 9640);
+(32, 'shopeepay', 2600000.00, 9640),
+(33, 'mandiri', 100000.00, 9641),
+(34, 'mandiri', 111000.00, 9642),
+(35, 'shopeepay', 105500.00, 9643),
+(36, 'shopeepay', 1000000.00, 9644);
 
 -- --------------------------------------------------------
 
@@ -114,7 +121,9 @@ INSERT INTO `pengguna` (`id`, `namaPengguna`, `kataSandi`, `pelanggan_id`, `role
 (30, 'mudama', '$2y$10$r93vdptmZRrq0OcDiNst2e2.zDHfj5QsCXo3cd5M.CpOV5miuVLFS', 2, 'user'),
 (31, 'sim2', '$2y$10$2PKLOO8A.KxOH5T.aRFsz.sSwxMqfGYQ4rs2UMZAUsqaQC0Cu.xNe', 3, 'admin'),
 (32, 'erik2', '$2y$10$SFH9cC.70bFcctMWdBjhc.vNVl9pXBWW74PIxKH1YmaRvCcnZU/zi', 4, 'user'),
-(33, 'abiyoga', '$2y$10$XJdojx3KiY/wJ8NdKSDFieVTDNKN/fcGG5T1AkmxqONb0SaP0SEWG', 5, 'user');
+(33, 'abiyoga', '$2y$10$XJdojx3KiY/wJ8NdKSDFieVTDNKN/fcGG5T1AkmxqONb0SaP0SEWG', 5, 'user'),
+(34, 'mosangking', '$2y$10$GFPwA/EVQHbXqs8tV1Iideh2ed/RgzPwKfDdw5tL9d1SJu1aRJmRe', 6, 'user'),
+(35, 'mokaiwa', '$2y$10$2WB6llxp12W6cpzchjEbOOkfQ4SpEBMuR.HFHxxkdj8BqKHCYhlY6', 7, 'user');
 
 -- --------------------------------------------------------
 
@@ -140,7 +149,11 @@ INSERT INTO `pengiriman` (`id`, `metodePengiriman`, `statusPengiriman`, `tanggal
 (29, 'j&amp;t express', 'Dikirim', '2024-06-04', 9637),
 (30, 'grab express', 'Dikirim', '2024-06-04', 9638),
 (31, 'gojek instant courier', 'Pending', '2024-06-04', 9639),
-(32, 'grab express', 'Dikirim', '2024-06-05', 9640);
+(32, 'grab express', 'Dikirim', '2024-06-05', 9640),
+(33, 'grab express', 'Pending', '2024-06-05', 9641),
+(34, 'spx express', 'Dikirim', '2024-06-06', 9642),
+(35, 'spx express', 'Pending', '2024-06-09', 9643),
+(36, 'grab express', 'Dikirim', '2024-06-09', 9644);
 
 -- --------------------------------------------------------
 
@@ -163,7 +176,11 @@ INSERT INTO `pesanan` (`id`, `pelanggan_id`) VALUES
 (9637, 4),
 (9639, 4),
 (9640, 4),
-(9638, 5);
+(9641, 4),
+(9642, 4),
+(9643, 4),
+(9638, 5),
+(9644, 6);
 
 -- --------------------------------------------------------
 
@@ -175,7 +192,6 @@ CREATE TABLE `pesananuser` (
   `id` int(11) NOT NULL,
   `alamatUser` varchar(255) NOT NULL,
   `namaBarang` varchar(255) NOT NULL,
-  `jenisBarang` varchar(255) NOT NULL,
   `jumlahBarang` varchar(255) NOT NULL,
   `pesanan_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -184,19 +200,25 @@ CREATE TABLE `pesananuser` (
 -- Dumping data for table `pesananuser`
 --
 
-INSERT INTO `pesananuser` (`id`, `alamatUser`, `namaBarang`, `jenisBarang`, `jumlahBarang`, `pesanan_id`) VALUES
-(71, 'bali denpasar indonesia', 'chicken nugget fiesta 500 GR', '', '1', 9635),
-(72, 'perumahan graha parta lestari blok j no4', 'teh sosro 250 ml', '', '1', 9636),
-(73, 'perumahan graha parta lestari blok j no4', 'Beras', '', '1', 9636),
-(74, 'jalan gunung patas no 4', 'teh sosro 250 ml', '', '1', 9637),
-(75, 'jalan gunung patas no 4', 'Beras', '', '1', 9637),
-(76, 'jalan tiara no 4', 'chicken nugget fiesta 500 GR', '', '1', 9638),
-(77, 'dekat stikom tunggu di depan bogaloka', 'teh sosro 250 ml', '', '4', 9639),
-(78, 'dekat stikom tunggu di depan bogaloka', 'chicken nugget fiesta 500 GR', '', '2', 9639),
-(79, 'dekat stikom tunggu di depan bogaloka', 'teh botol 500 ml v2', '', '1', 9639),
-(80, 'banjar pitik pemogan', 'Beras', '', '4', 9640),
-(81, 'banjar pitik pemogan', 'teh sosro 250 ml', '', '2', 9640),
-(82, 'banjar pitik pemogan', 'chicken nugget fiesta 500 GR', '', '1', 9640);
+INSERT INTO `pesananuser` (`id`, `alamatUser`, `namaBarang`, `jumlahBarang`, `pesanan_id`) VALUES
+(71, 'bali denpasar indonesia', 'chicken nugget fiesta 500 GR', '1', 9635),
+(72, 'perumahan graha parta lestari blok j no4', 'teh sosro 250 ml', '1', 9636),
+(73, 'perumahan graha parta lestari blok j no4', 'Beras', '1', 9636),
+(74, 'jalan gunung patas no 4', 'teh sosro 250 ml', '1', 9637),
+(75, 'jalan gunung patas no 4', 'Beras', '1', 9637),
+(76, 'jalan tiara no 4', 'chicken nugget fiesta 500 GR', '1', 9638),
+(77, 'dekat stikom tunggu di depan bogaloka', 'teh sosro 250 ml', '4', 9639),
+(78, 'dekat stikom tunggu di depan bogaloka', 'chicken nugget fiesta 500 GR', '2', 9639),
+(79, 'dekat stikom tunggu di depan bogaloka', 'teh botol 500 ml v2', '1', 9639),
+(80, 'banjar pitik pemogan', 'Beras', '4', 9640),
+(81, 'banjar pitik pemogan', 'teh sosro 250 ml', '2', 9640),
+(82, 'banjar pitik pemogan', 'chicken nugget fiesta 500 GR', '1', 9640),
+(83, 'Jalan gunung mas banjar tegal buah perumahan graha parta lestari blok j no 4', 'chicken nugget fiesta 500 GR', '1', 9641),
+(84, 'baru ni', 'teh sosro 250 ml', '2', 9642),
+(85, 'baru ni', 'chicken nugget fiesta 500 GR', '1', 9642),
+(86, 'buleleng busung biu', 'chicken nugget fiesta 500 GR', '1', 9643),
+(87, 'buleleng busung biu', 'teh sosro 250 ml', '1', 9643),
+(88, 'denpasar ubung kaja', 'Beras', '2', 9644);
 
 -- --------------------------------------------------------
 
@@ -290,43 +312,43 @@ ALTER TABLE `stockbarang`
 -- AUTO_INCREMENT for table `contactus`
 --
 ALTER TABLE `contactus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9641;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9645;
 
 --
 -- AUTO_INCREMENT for table `pesananuser`
 --
 ALTER TABLE `pesananuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `stockbarang`
